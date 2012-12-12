@@ -1,0 +1,4 @@
+fabric-openerp
+==============
+
+fabric-openerp
