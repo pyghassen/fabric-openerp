@@ -18,5 +18,5 @@ Features
 Installation
 ------------
 First of all you have to install pip
-.. code-block:: console
-  $ sudo apt-get install python-pip
+
+    $ sudo apt-get install python-pip
