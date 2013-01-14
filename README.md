@@ -17,6 +17,10 @@ Features
 
 Installation
 ------------
-First of all you have to install pip
+First of all you have to install `pip`
 
     $ sudo apt-get install python-pip
+
+After that you gonna need to install some requirements like `Fabric` and `Jinja2`
+
+    $ sudo pip install -r requirements.txt
