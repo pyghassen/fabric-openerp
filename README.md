@@ -24,3 +24,13 @@ First of all you have to install `pip`
 After that you gonna need to install some requirements like `Fabric` and `Jinja2`
 
     $ sudo pip install -r requirements.txt
+
+Usage
+------------
+List all the available commands:
+
+    $ fab -l
+
+Example:
+
+    $ fab download_openerp
