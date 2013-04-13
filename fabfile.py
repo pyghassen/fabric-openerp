@@ -103,7 +103,7 @@ def setup_pg_user(username, password, db_name):
     sudo('echo "host {0} {1} 127.0.0.1/32 trust" >> {2}'.format(_db_name, username, pg_hba_conf_path,
         user="postgres"
         )
-    sudo("service postgres restart")
+    sudo("service postgresql restart")
 
 @task
 def pg_backup():
