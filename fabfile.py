@@ -95,11 +95,10 @@ def pg_setup():
 @task
 def setup_pg_user(username, password, db_name):
     """Adds a user to postgres and creates a database"""
-    sql = """
-    CREATE USER {0} WITH CREATEDB PASSWORD '{1}';
-    CREATE DATABASE {2} WITH OWNER {1};
-    """.format(username, password, db_name)
-    sudo('psql -c "{0}"'.format(sql), user= "postgres")
+    user_sql = "CREATE USER {0} WITH CREATEDB PASSWORD '{1}';"format(username, password)
+    db_sql = "CREATE DATABASE {0} WITH OWNER {1};".format(db_name, username)
+    sudo('psql -c "{0}"'.format(user_sql), user= "postgres")
+    sudo('psql -c "{0}"'.format(db_sql), user= "postgres")
     pg_hba_conf_path =  "/etc/postgresql/9.1/main/pg_hba.conf"
     sudo('echo "host {0} {1} 127.0.0.1/32 trust" >> {2}'.format(_db_name, username, pg_hba_conf_path,
         user="postgres"
