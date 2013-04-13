@@ -95,7 +95,7 @@ def pg_setup():
 @task
 def setup_pg_user(username, password, db_name):
     """Adds a user to postgres and creates a database"""
-    user_sql = "CREATE USER {0} WITH CREATEDB PASSWORD '{1}';"format(username, password)
+    user_sql = "CREATE USER {0} WITH CREATEDB PASSWORD '{1}';".format(username, password)
     db_sql = "CREATE DATABASE {0} WITH OWNER {1};".format(db_name, username)
     sudo('psql -c "{0}"'.format(user_sql), user= "postgres")
     sudo('psql -c "{0}"'.format(db_sql), user= "postgres")
