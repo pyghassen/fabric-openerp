@@ -96,7 +96,7 @@ def pg_setup():
 def setup_pg_user(username, password, db_name):
     """Adds a user to postgres and creates a database"""
     sql = """
-    CREATE USER '{0}' WITH CREATEDB PASSWORD '{1}';
+    CREATE USER {0} WITH CREATEDB PASSWORD '{1}';
     CREATE DATABASE {2} WITH OWNER {1};
     """.format(username, password, db_name)
     sudo('psql -c "{0}"'.format(sql), user= "postgres")
