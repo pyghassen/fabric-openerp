@@ -93,6 +93,20 @@ def pg_setup():
     sudo("gzip {0}".format(file_path), user= "postgres")
     
 @task
+def setup_pg_user(username, password, db_name):
+    """Adds a user to postgres and creates a database"""
+    sql = """
+    CREATE USER '{0}' WITH CREATEDB PASSWORD '{1}';
+    CREATE DATABASE {2} WITH OWNER {1};
+    """.format(username, password, db_name)
+    sudo('psql -c "{0}"'.format(sql), user= "postgres")
+    pg_hba_conf_path =  "/etc/postgresql/9.1/main/pg_hba.conf"
+    sudo('echo "host {0} {1} 127.0.0.1/32 trust" >> {2}'.format(_db_name, username, pg_hba_conf_path,
+        user="postgres"
+        )
+    sudo("service postgres restart")
+
+@task
 def pg_backup():
     file_path = "{0}{1}.{2}.sql".format(POSTGRES_HOME,db_name,NOW)
     sudo("pg_dump {0} -f {1}".format(db_name, file_path), user= "postgres")
